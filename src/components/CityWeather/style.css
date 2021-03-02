@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    align-items: center;
+    }
+.description{ 
+height: 50px;
+width: 100px;
+display: flex;
+justify-content: center;
+align-items: center;
+border: 1px solid black;
+border-radius: 10px;
+color: white ;
+background-color: rgb(75, 114, 199);
+
+}

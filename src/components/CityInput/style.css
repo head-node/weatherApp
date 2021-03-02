@@ -1,0 +1,15 @@
+.container{  
+   
+    height:200px;
+    width: 300px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    
+}  
+.input{
+    width:fit-content;
+    display: flex;
+    align-self: center;
+
+}

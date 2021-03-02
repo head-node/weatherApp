@@ -1,25 +1,37 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.css'; 
+import React from "react"
+import CityInput from "./components/CityInput"
+import CityWeather from "./components/CityWeather"
 
-function App() {
+function App() { 
+  const[city,setCity]=React.useState("");  
+  const [cityWeather,setCityWeather]=React.useState("");
+
+  const fetchCityWeather =()=>{
+    
+    fetch( 
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=f477fbf1028b1963c63b17e148823ffd`)
+    
+    
+    .then((res)=>res.json())
+    .then((result)=>{
+    setCityWeather(result); 
+    })
+
+  }  
+  // console.log(cityWeather)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="body">
+    <CityInput city={city} setCity={setCity} fetchCityWeather={fetchCityWeather} setCityWeather={setCityWeather}/> 
+    { 
+    cityWeather==""?(<></>):(
+      <CityWeather className="result" current={cityWeather}/>
+    )
+     }
     </div>
-  );
+  ); 
 }
 
 export default App;
+ 
