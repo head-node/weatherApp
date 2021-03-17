@@ -12,12 +12,20 @@ function App() {
     
     fetch( 
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=f477fbf1028b1963c63b17e148823ffd`)
+      
     
-    
-    .then((res)=>res.json())
-    .then((result)=>{
+    .then(
+      (res)=>
+      {if(res.ok)
+   return res.json() 
+       else
+       throw Error(res.status)
+  })
+    .then((result)=>{ 
+     
     setCityWeather(result); 
     })
+    .catch((e)=>alert(e))
 
   }  
   // console.log(cityWeather)
@@ -25,7 +33,7 @@ function App() {
     <div className="body">
     <CityInput city={city} setCity={setCity} fetchCityWeather={fetchCityWeather} setCityWeather={setCityWeather}/> 
     { 
-    cityWeather==""?(<></>):(
+    cityWeather===""?(<></>):(
       <CityWeather className="result" current={cityWeather}/>
     )
      }
